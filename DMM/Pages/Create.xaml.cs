@@ -22,6 +22,8 @@ namespace DMM
 
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+
+            //кнопка закрытия
             TapGestureRecognizer close_tap = new TapGestureRecognizer();
             close_tap.Tapped += (s, e) =>
             {
@@ -31,7 +33,7 @@ namespace DMM
             Close.GestureRecognizers.Add(close_tap);
 
 
-
+            // нажатие на звезду
             TapGestureRecognizer star_tap = new TapGestureRecognizer();
             star_tap.Tapped += (s, e) =>
             {
@@ -47,7 +49,7 @@ namespace DMM
             };
             for (int z = 1; z < 6; z++) important.Children[z].GestureRecognizers.Add(star_tap);
 
-
+            // кнопка для картинки + в разделе тегов
             TapGestureRecognizer tag_tap = new TapGestureRecognizer();
             tag_tap.Tapped += (s, e) =>
             {
@@ -55,6 +57,7 @@ namespace DMM
             };
             plus.GestureRecognizers.Add(tag_tap);
 
+            // + в разделе соеденённые
             TapGestureRecognizer connect_tap = new TapGestureRecognizer();
             connect_tap.Tapped += (s, e) =>
             {
@@ -70,6 +73,7 @@ namespace DMM
         }
         protected override void OnAppearing()
         {
+            // принимаю и обрабатываю список из tag.xaml.cs
             MessagingCenter.Subscribe<object, List<Model>>(this, "tag", (obj, result) => {
 
                 string tagString = "";
@@ -83,6 +87,7 @@ namespace DMM
                 tagList = tagSList;
                 tagLabel.Text = tagString;
             });
+            // принимаю и обрабатываю список из connected.xaml.cs
             MessagingCenter.Subscribe<object, List<Model>>(this, "connected", (obj, result) => {
                 string connectString = "";
                 List<long> connectSList = new List<long>();
@@ -113,18 +118,19 @@ namespace DMM
             Json.Data.Save(data, Path.Combine(path, "Data.json"));
             await Navigation.PopAsync();
         }
+        // проверка на айди
         long GetID()
         {
             if (!string.IsNullOrWhiteSpace(Id.Text) && !long.TryParse(Id.Text, out long id)
                 && !data.Cards.ContainsKey(id) && id < 0) return id;
 
-
+            // если никакого нет либо введён неправильно то беру рандом
             long id_ = rnd.Next(0, 999999);
             while (data.Cards.ContainsKey(id_)) id_ = rnd.Next(0, 999999);
             return id_;
         }
 
-        //-------------------------------------------------------
+        //кнопка назад
         private async void Back(object sender, EventArgs e)
         {
             if(!string.IsNullOrWhiteSpace(Name.Text) || !string.IsNullOrWhiteSpace(Text.Text))

@@ -14,8 +14,10 @@ using Rg.Plugins.Popup.Extensions;
 
 namespace DMM
 {
+    //класс для отображения тегов и присоеденённых идей
     public class Model : INotifyPropertyChanged
     {
+        // хз зачем это надо но оно надо
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
@@ -58,6 +60,7 @@ namespace DMM
             InitializeComponent();
             data = Json.Data.FromJson(Json.Data.Load(Path.Combine(path, "Data.json")));
             this.key = key;
+            // создаю список из тегов
             if (data.Tags != null) 
                 foreach (string element in data.Tags) 
                     list.Add(new Model() { Text = element, IsChecked = isHave(element) });
@@ -69,6 +72,7 @@ namespace DMM
             await Navigation.PopPopupAsync();
 
             var result = list.Where(w => w.IsChecked == true).ToList();
+            // отправляю список из тегов с галочкой
             MessagingCenter.Send<object, List<Model>>(this, "tag", result);
         }
 

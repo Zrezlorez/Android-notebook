@@ -7,6 +7,7 @@ using Json;
 
 namespace DMM
 {
+    //класс чтобы можно было удобно отображать список идей на главной странице
     public class CardList
     {
         public string Name { get; }
@@ -34,8 +35,10 @@ namespace DMM
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
+        // OnAppearing вызывается перед прогрузкой страницы
         protected override void OnAppearing()
         {
+            // Перебираются все карточки и потом отображаются
             data = Data.FromJson(Data.Load(Path.Combine(path, "Data.json")));
             list = new List<CardList>();
             foreach (var card in data.Cards) 

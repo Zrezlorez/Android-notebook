@@ -25,13 +25,13 @@ namespace DMM
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
-
+            // проверка открыта/закрыта карта
             if (card.Lock) LoadLock();
             else
             {
                 Name.Text = card.Name;
                 Text.Text = card.Text;
-
+                //кнопка для картинки + в разделе тегов
                 TapGestureRecognizer tag_tap = new TapGestureRecognizer();
                 tag_tap.Tapped += async (s, e) =>
                 {
@@ -39,7 +39,7 @@ namespace DMM
                 };
                 plus.GestureRecognizers.Add(tag_tap);
 
-
+                // нажатие на звзеду
                 TapGestureRecognizer star_tap = new TapGestureRecognizer();
                 star_tap.Tapped += (s, e) =>
                 {
@@ -55,7 +55,7 @@ namespace DMM
                 };
                 for (int z = 1; z < 6; z++) important.Children[z].GestureRecognizers.Add(star_tap);
             }
-
+            // + в разделе соеденённые
             TapGestureRecognizer connect_tap = new TapGestureRecognizer();
             connect_tap.Tapped += async (s, e) =>
             {
@@ -63,7 +63,7 @@ namespace DMM
             };
             connectPlus.GestureRecognizers.Add(connect_tap);
 
-
+            // строка из тегов
             string tags = "";
             if (card.Tags != null) 
                 foreach (string i in card.Tags) 
@@ -71,7 +71,7 @@ namespace DMM
             if (!string.IsNullOrWhiteSpace(tags)) tags = tags.Remove(tags.Length - 2);
             tagLabel.Text = tags;
 
-
+            // строка из присоеденённых
             string connected = "";
             if (card.ConnectedIdeas != null) 
                 foreach (long i in card.ConnectedIdeas)
@@ -82,7 +82,7 @@ namespace DMM
 
             Date.Text = card.Date.ToString("f");
 
-
+            // отображение важности
             for (int i = 1; i < card.Diff+1; i++)
             {
                 var image = (Image)important.Children[i];
@@ -92,6 +92,7 @@ namespace DMM
 
         protected override void OnAppearing()
         {
+            // принимаю и обрабатываю список из tag.xaml.cs
             MessagingCenter.Subscribe<object, List<Model>>(this, "tag", (obj, result) => {
 
                 string tagString = "";
@@ -104,7 +105,8 @@ namespace DMM
                 if (!string.IsNullOrWhiteSpace(tagString)) tagString = tagString.Remove(tagString.Length - 2);
                 tagList = tagSList;
                 tagLabel.Text = tagString;
-            });            
+            });
+            // принимаю и обрабатываю список из connected.xaml.cs
             MessagingCenter.Subscribe<object, List<Model>>(this, "connected", (obj, result) => {
                 string connectString = "";
                 List<long> connectSList = new List<long>();
@@ -157,6 +159,8 @@ namespace DMM
         {
             await Navigation.PopAsync();
         }
+
+        //функция полностью работает с интерфейсом. По названию всё понятно
         void LoadLock()
         {
             NameStack.Children.RemoveAt(0);

@@ -8,6 +8,7 @@ using Newtonsoft.Json.Converters;
 
 namespace Json
 {
+    // файл с помощью которого работаю с json, тут всё очевидно
     public partial class Data
     {
         public static void Save(Data text, string path)

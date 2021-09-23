@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Xamarin.Forms;
+// смотреть json.cs
 using Json;
 
 namespace DMM

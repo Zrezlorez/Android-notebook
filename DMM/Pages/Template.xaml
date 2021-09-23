@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DMM.Template">
+    <StackLayout Spacing="10" Margin="10">
+        <StackLayout Orientation="Horizontal">
+            <Image Source="back.png" HeightRequest="35" HorizontalOptions="StartAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                    Tapped="Back"/>
+                </Image.GestureRecognizers>
+            </Image>            
+            <Image Source="delete.png" HeightRequest="35" HorizontalOptions="EndAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                    Tapped="DeleteCard"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Padding="15, 0, 25, 0" x:Name="NameStack">
+            <Entry Text="Название" WidthRequest="200" FontSize="16" FontAttributes="Bold" x:Name="Name"/>
+            <Image Source="opened.png" x:Name="Open" HeightRequest="33" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="LockCard"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+        
+        <Frame CornerRadius="20" x:Name="TextFrame">
+            <Editor Text="Текст" HeightRequest="185" x:Name="Text" FontSize="14"/>
+        </Frame>
+        
+        <Frame CornerRadius="20"  HasShadow="True">
+            <StackLayout Orientation="Horizontal" x:Name="important" Spacing="10">
+                <Label Text="Важность:" VerticalOptions="CenterAndExpand"/>
+                <Image Source="gray_star.png" HeightRequest="33"/>
+                <Image Source="gray_star.png" HeightRequest="33"/>
+                <Image Source="gray_star.png" HeightRequest="33"/>
+                <Image Source="gray_star.png" HeightRequest="33"/>
+                <Image Source="gray_star.png" HeightRequest="33"/>
+            </StackLayout>
+        </Frame>
+        
+        <Frame CornerRadius="20"  HasShadow="True">
+            <StackLayout Orientation="Horizontal" x:Name="tagStack">
+                <Label Text="Теги:"/>
+                <Label x:Name="tagLabel"/>
+                <Image Source="plus.png" HeightRequest="15" x:Name="plus"/>
+            </StackLayout>
+        </Frame>
+
+        <Frame CornerRadius="20" HasShadow="True">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Связанные:"/>
+                <Label x:Name="connectedLabel"/>
+                <Image Source="plus.png" HeightRequest="15" x:Name="connectPlus"/>
+            </StackLayout>
+        </Frame>
+        <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+            <Label Text="11 Сентября 2001г. 11:01" WidthRequest="140" x:Name="Date" 
+                   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand"/>
+        </StackLayout>
+        <Button Text="Сохранить" CornerRadius="20" HeightRequest="50" Clicked="SaveCard"/>
+    </StackLayout>
+</ContentPage>

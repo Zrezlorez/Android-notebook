@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+             xmlns:pages="http://rotorgames.com"  
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DMM.Connected">
+
+    
+    <StackLayout Spacing="15" Margin="15" BackgroundColor="White">
+        <ListView x:Name="listView" Margin="15" SelectionMode="None" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="{Binding Text}" TextColor="{Binding Color}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                            <CheckBox IsChecked="{Binding IsChecked}" HorizontalOptions="EndAndExpand" Color="Black"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Done" WidthRequest="100" Clicked="Done"/>
+    </StackLayout>
+
+
+</pages:PopupPage>

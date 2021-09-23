@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DMM.Create">
+
+
+    <StackLayout Spacing="10" Padding="15, 0, 25, 0" VerticalOptions="FillAndExpand">
+        <Image Source="back.png" HeightRequest="40" HorizontalOptions="StartAndExpand">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer
+                    Tapped="Back"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <StackLayout Orientation="Horizontal" >
+            <Entry Placeholder="Название" WidthRequest="200" x:Name="Name"/>
+            <Image Source="opened.png" HeightRequest="33" x:Name="Close" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+
+        <Frame CornerRadius="10" HasShadow="True">
+            <Editor Placeholder="Текст" HeightRequest="175" x:Name="Text"/>
+        </Frame>
+
+        <Frame CornerRadius="10" HasShadow="True">
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Label Text="Теги:"/>
+                <Label x:Name="tagLabel"/>
+                <Image Source="plus.png" HeightRequest="15" x:Name="plus"/>
+            </StackLayout>
+        </Frame>
+        <Frame CornerRadius="10" HasShadow="True">
+            <StackLayout Orientation="Horizontal" Spacing="10" x:Name="important">
+                <Label Text="Важность"/>
+                <Image Source="gray_star.png" HeightRequest="33"/>
+                <Image Source="gray_star.png" HeightRequest="33"/>
+                <Image Source="gray_star.png" HeightRequest="33"/>
+                <Image Source="gray_star.png" HeightRequest="33"/>
+                <Image Source="gray_star.png" HeightRequest="33"/>
+            </StackLayout>
+        </Frame>
+        <Frame CornerRadius="10" HasShadow="True">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Связанные:"/>
+                <Label x:Name="connectedLabel"/>
+                <Image Source="plus.png" HeightRequest="15" x:Name="connectPlus"/>
+            </StackLayout>
+        </Frame>
+
+        <StackLayout Orientation="Horizontal">
+            <Entry Placeholder="Id" WidthRequest="100" x:Name="Id"/>
+        </StackLayout>
+
+        <Button Text="Save" CornerRadius="20" Clicked="CreateCard" VerticalOptions="EndAndExpand"/>
+    </StackLayout>
+</ContentPage>

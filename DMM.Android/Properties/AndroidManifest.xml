@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.1.3" package="com.eliteinc.NotebookOfTheFuture" android:installLocation="auto">
+	<application android:label="Блокнот будущего" android:theme="@style/MainTheme" android:icon="@drawable/icon"></application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-sdk android:targetSdkVersion="29" android:minSdkVersion="21" />
+</manifest>

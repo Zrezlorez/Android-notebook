@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DMM"
+             x:Class="DMM.MainPage">
+
+
+    <StackLayout Spacing="5" Padding="0, 15, 0, 0">
+        <Frame CornerRadius="30" Margin="5" Padding="0">
+            <SearchBar Placeholder="Поиск..."
+                   SearchButtonPressed="SearchBarClick"
+                   x:Name="Search"
+                   MinimumHeightRequest="100"/>
+        </Frame>
+        <ListView  x:Name="listView" HasUnevenRows="True" 
+                   VerticalScrollBarVisibility="Always"
+                   SeparatorVisibility="None"
+                   SelectionMode="None"
+                   ItemTapped="listView_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame BorderColor="Red" CornerRadius="10" Margin="10" Padding="0, 5, 0, 5">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                    <Label Text="{Binding Name}" TextColor="MediumVioletRed" 
+                                           FontAttributes="Bold" FontSize="17" 
+                                           WidthRequest="220" 
+                                           HorizontalTextAlignment="Center" 
+                                           VerticalTextAlignment="Center"
+                                           Padding="5, 0, 0, 0"/>
+                                    <BoxView WidthRequest="2" Color="Red"/>
+                                    <Label Text="{Binding Id}" TextColor="MediumVioletRed" 
+                                           FontAttributes="Bold" FontSize="17" 
+                                           HorizontalOptions="FillAndExpand" 
+                                           HorizontalTextAlignment="Center" 
+                                           VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                <BoxView HeightRequest="2" Color="Red"/>
+                                <Label Text="{Binding Text}" TextColor="Black"
+                                        WidthRequest="225" HeightRequest="35"
+                                       Padding="5, 0, 0, 0"/>
+                                <BoxView HeightRequest="2" Color="Red"/>
+                                <StackLayout Orientation="Horizontal" HeightRequest="30">
+                                    <Label Text="Тут будут теги" TextColor="Black"
+                                            WidthRequest="225" FontAttributes="Bold"
+                                           Padding="5, 0, 0, 0"/>
+                                    <BoxView WidthRequest="2" Color="Red"/>
+                                    <Label Text="{Binding Date}" TextColor="MediumVioletRed" FontSize="13"
+                                        HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal" Padding="40, 0, 40, 25">
+            <Button Text="Settings" Scale="1.3" Clicked="ToSettingsPage"/>
+            <Button Text="Add" HorizontalOptions="EndAndExpand" Scale="1.3" Clicked="ToCreatePage"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

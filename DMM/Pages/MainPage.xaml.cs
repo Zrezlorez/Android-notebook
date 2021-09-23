@@ -38,10 +38,8 @@ namespace DMM
         {
             data = Data.FromJson(Data.Load(Path.Combine(path, "Data.json")));
             list = new List<CardList>();
-            foreach (var card in data.Cards)
-            {
+            foreach (var card in data.Cards) 
                 list.Add(new CardList(card.Value, card.Key));
-            }
             listView.ItemsSource = null;
             listView.ItemsSource = list;
         }

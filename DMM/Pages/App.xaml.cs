@@ -18,7 +18,8 @@ namespace DMM
                 {
                     Cards = new Dictionary<long, Json.Card>(1)
                     {
-                        [0] = new Json.Card() { Name = "Первая идея", 
+                        [0] = new Json.Card() { 
+                            Name = "Первая идея", 
                             Text = "Вот и ваша первая запись!", 
                             Diff = 0, 
                             Lock = false, 

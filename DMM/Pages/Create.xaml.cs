@@ -127,7 +127,7 @@ namespace DMM
         //-------------------------------------------------------
         private async void Back(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(Name.Text) || !string.IsNullOrWhiteSpace(Name.Text))
+            if(!string.IsNullOrWhiteSpace(Name.Text) || !string.IsNullOrWhiteSpace(Text.Text))
             {
                 bool results = await DisplayAlert("Стоять!", "Если ты выйдешь, то идея не сохранится!", 
                     "Ну и ладно", "Я остаюсь");

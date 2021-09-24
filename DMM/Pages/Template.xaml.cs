@@ -127,6 +127,7 @@ namespace DMM
                 "Ладно", "Отмена!!!");
             if (result)
             {
+                data = Json.Data.FromJson(Json.Data.Load(Path.Combine(path, "Data.json")));
                 data.Cards.Remove(key);
                 Json.Data.Save(data, Path.Combine(path, "Data.json"));
                 await Navigation.PopAsync();
@@ -134,6 +135,7 @@ namespace DMM
         }
         private async void SaveCard(object sender, EventArgs args)
         {
+            data = Json.Data.FromJson(Json.Data.Load(Path.Combine(path, "Data.json")));
             card.Name = Name.Text;
             card.Text = Text.Text;
             card.Diff = diff;

@@ -9,6 +9,7 @@ using Json;
 namespace DMM
 {
     //класс чтобы можно было удобно отображать список идей на главной странице
+    //комментарий
     public class CardList
     {
         public string Name { get; }

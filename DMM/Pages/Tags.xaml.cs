@@ -49,7 +49,7 @@ namespace DMM
     }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Tags : PopupPage
+    public partial class Tags : ContentPage
     {
         Json.Data data;
         List<Model> list = new List<Model>();
@@ -69,7 +69,7 @@ namespace DMM
 
         private async void Done(object sender, EventArgs e)
         {
-            await Navigation.PopPopupAsync();
+            await Navigation.PopAsync();
 
             var result = list.Where(w => w.IsChecked == true).ToList();
             // отправляю список из тегов с галочкой

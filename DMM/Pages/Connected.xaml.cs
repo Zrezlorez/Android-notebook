@@ -7,21 +7,25 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Extensions;
 using Json;
 
 namespace DMM
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Connected : PopupPage
+    public partial class Connected : ContentPage
     {
         string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        long key;
         List<Model> list = new List<Model>();
         Data data;
         public Connected(long key)
         {
+            this.key = key;
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
             data = Data.FromJson(Data.Load(Path.Combine(path, "Data.json")));
             // добавляю в список все названия идей кроме активной
             list.AddRange(from card in data.Cards
@@ -35,7 +39,6 @@ namespace DMM
                           });
             listView.ItemsSource = list;
         }
-
         bool isConnect(long key, long name)
         {
             // присоеденена ли идея уже
@@ -58,11 +61,17 @@ namespace DMM
         }
         private async void Done(object sender, EventArgs e)
         {
-            await Navigation.PopPopupAsync();
+            await Navigation.PopAsync();
 
             var result = list.Where(w => w.IsChecked == true).ToList();
             // отправляю список выбранных идей
             MessagingCenter.Send<object, List<Model>>(this, "connected", result);
+        }
+
+        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            int index = (listView.ItemsSource as List<Model>).IndexOf(e.Item as Model);
+            list.ElementAt(index).IsChecked = !list.ElementAt(index).IsChecked;
         }
     }
 }

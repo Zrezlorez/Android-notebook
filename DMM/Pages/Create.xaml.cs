@@ -1,5 +1,4 @@
-﻿using Rg.Plugins.Popup.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using Xamarin.Forms;
@@ -53,7 +52,7 @@ namespace DMM
             TapGestureRecognizer tag_tap = new TapGestureRecognizer();
             tag_tap.Tapped += (s, e) =>
             {
-                Navigation.PushPopupAsync(new Tags(-1));
+                Navigation.PushAsync(new Tags(-1));
             };
             plus.GestureRecognizers.Add(tag_tap);
 
@@ -61,7 +60,7 @@ namespace DMM
             TapGestureRecognizer connect_tap = new TapGestureRecognizer();
             connect_tap.Tapped += (s, e) =>
             {
-                Navigation.PushPopupAsync(new Connected(-1));
+                Navigation.PushAsync(new Connected(-1));
             };
             connectPlus.GestureRecognizers.Add(connect_tap);
 

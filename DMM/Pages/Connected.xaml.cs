@@ -72,6 +72,7 @@ namespace DMM
         {
             int index = (listView.ItemsSource as List<Model>).IndexOf(e.Item as Model);
             list.ElementAt(index).IsChecked = !list.ElementAt(index).IsChecked;
+            listView.ItemsSource = list;
         }
     }
 }

@@ -54,6 +54,8 @@ namespace DMM
                 };
                 for (int z = 1; z < 6; z++) important.Children[z].GestureRecognizers.Add(star_tap);
             }
+
+
             // + в разделе соеденённые
             TapGestureRecognizer connect_tap = new TapGestureRecognizer();
             connect_tap.Tapped += async (s, e) =>
@@ -62,6 +64,7 @@ namespace DMM
             };
             connectPlus.GestureRecognizers.Add(connect_tap);
 
+
             // строка из тегов
             string tags = "";
             if (card.Tags != null) 
@@ -69,6 +72,7 @@ namespace DMM
                     tags += i + ", ";
             if (!string.IsNullOrWhiteSpace(tags)) tags = tags.Remove(tags.Length - 2);
             tagLabel.Text = tags;
+
 
             // строка из присоеденённых
             string connected = "";
@@ -91,6 +95,7 @@ namespace DMM
 
         protected override void OnAppearing()
         {
+
             // принимаю и обрабатываю список из tag.xaml.cs
             MessagingCenter.Subscribe<object, List<Model>>(this, "tag", (obj, result) => {
 
@@ -118,6 +123,7 @@ namespace DMM
                 connectedList = connectSList;
                 connectedLabel.Text = connectString;
             });
+
         }
         private async void DeleteCard(object sender, EventArgs args)
         {
@@ -135,6 +141,7 @@ namespace DMM
         private async void SaveCard(object sender, EventArgs args)
         {
             data = Json.Data.FromJson(Json.Data.Load(Path.Combine(path, "Data.json")));
+            card = data.Cards[key];
             card.Name = Name.Text;
             card.Text = Text.Text;
             card.Diff = diff;

@@ -28,7 +28,7 @@
         </StackLayout>
         
         <Frame CornerRadius="20" x:Name="TextFrame">
-            <Editor Text="Текст" HeightRequest="185" x:Name="Text" FontSize="14"/>
+            <Editor Text="Текст" HeightRequest="200" x:Name="Text" FontSize="14"/>
         </Frame>
         
         <Frame CornerRadius="20"  HasShadow="True">
@@ -44,18 +44,28 @@
         
         <Frame CornerRadius="20"  HasShadow="True">
             <StackLayout Orientation="Horizontal" x:Name="tagStack">
-                <Label Text="Теги:"/>
-                <Label x:Name="tagLabel"/>
-                <Image Source="plus.png" HeightRequest="15" x:Name="plus"/>
+                <Label Text="Теги:" 
+                       MaxLines="1"/>
+                
+                <Label x:Name="tagLabel" 
+                       MaxLines="2" 
+                       LineBreakMode="TailTruncation"/>
+                
+                <Image Source="plus.png" 
+                       HeightRequest="15" 
+                       x:Name="plus"/>
             </StackLayout>
         </Frame>
 
         <Frame CornerRadius="20" HasShadow="True">
             <StackLayout Orientation="Horizontal">
                 <Label Text="Связанные:"/>
-                <Label x:Name="connectedLabel"/>
+                <Label x:Name="connectedLabel" 
+                       MaxLines="2" 
+                       LineBreakMode="TailTruncation"/>
                 <Image Source="plus.png" HeightRequest="15" x:Name="connectPlus"/>
             </StackLayout>
+            
         </Frame>
         <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
             <Label Text="11 Сентября 2001г. 11:01" WidthRequest="140" x:Name="Date" 

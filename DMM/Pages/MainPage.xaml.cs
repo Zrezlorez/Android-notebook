@@ -59,6 +59,7 @@ namespace DMM
 
         private async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            data = Data.FromJson(Data.Load(Path.Combine(path, "Data.json")));
             int index = (listView.ItemsSource as List<CardList>).IndexOf(e.Item as CardList);
             await Navigation.PushAsync(new Template(data.Cards.ElementAt(index).Key));
         }

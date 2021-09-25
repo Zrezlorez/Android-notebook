@@ -5,8 +5,11 @@
              x:Class="DMM.Connected">
 
     
-    <StackLayout Spacing="15" Margin="15" BackgroundColor="White">
-        <ListView x:Name="listView" Margin="15" SelectionMode="None" HasUnevenRows="True">
+    <StackLayout Spacing="15" Margin="15">
+        <ListView x:Name="listView" 
+                  SelectionMode="None" 
+                  HasUnevenRows="True"
+                  ItemTapped="listView_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

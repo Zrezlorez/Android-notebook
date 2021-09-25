@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Extensions;
 
 namespace DMM
 {
@@ -67,15 +65,10 @@ namespace DMM
             listView.ItemsSource = list;
         }
 
-        private async void Done(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
 
-            var result = list.Where(w => w.IsChecked == true).ToList();
-            // отправляю список из тегов с галочкой
-            MessagingCenter.Send<object, List<Model>>(this, "tag", result);
-        }
 
+        //------------------------------------------------------
+        // Методы обработки кликов
         private async void CreateTag(object sender, EventArgs e)
         {
             string result = await DisplayPromptAsync("Добавление тега", "Введите названия нового тега");
@@ -105,10 +98,30 @@ namespace DMM
             Json.Data.Save(data, Path.Combine(path, "Data.json"));
         }
 
+        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            int index = (listView.ItemsSource as List<Model>).IndexOf(e.Item as Model);
+            list.ElementAt(index).IsChecked = !list.ElementAt(index).IsChecked;
+            listView.ItemsSource = list;
+        }
+
+        private async void Done(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+
+            var result = list.Where(w => w.IsChecked == true).ToList();
+            // отправляю список из тегов с галочкой
+            MessagingCenter.Send<object, List<Model>>(this, "tag", result);
+        }
+
+
+
+
         bool isHave(string tag)
         {
             if (key>=0 && data.Cards[key].Tags.Contains(tag)) return true;
             return false;
         }
+
     }
 }

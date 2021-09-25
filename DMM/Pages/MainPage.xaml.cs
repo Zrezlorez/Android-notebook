@@ -49,7 +49,7 @@ namespace DMM
         }
         private async void ToCreatePage(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new Create());
+            await Navigation.PushAsync(new IdeaManager(-1));
         }        
         private async void ToSettingsPage(object sender, EventArgs args)
         {
@@ -61,7 +61,7 @@ namespace DMM
         {
             data = Data.FromJson(Data.Load(Path.Combine(path, "Data.json")));
             int index = (listView.ItemsSource as List<CardList>).IndexOf(e.Item as CardList);
-            await Navigation.PushAsync(new Template(data.Cards.ElementAt(index).Key));
+            await Navigation.PushAsync(new IdeaManager(data.Cards.ElementAt(index).Key));
         }
 
         private void SearchBarClick(object sender, EventArgs e)
